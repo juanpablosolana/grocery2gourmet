@@ -17,7 +17,7 @@ const getGCPCredentials = () => {
   } else {
     // Para desarrollo local, intenta usar la cuenta por defecto de gcloud
     try {
-      return {}; // Google Cloud SDK se encargará de la autenticación
+      return { project: process.env.VERTEXAI_PROJECT, }; // Google Cloud SDK se encargará de la autenticación
     } catch (error) {
       console.error("No se pudieron obtener las credenciales de GCP:", error);
       throw error; // Propaga el error para detener la ejecución
@@ -28,7 +28,6 @@ const getGCPCredentials = () => {
 // Inicializa Vertex AI con las credenciales y la ubicación
 const vertex_ai = new VertexAI({
   ...getGCPCredentials(),
-  project: process.env.VERTEXAI_PROJECT,
   location: process.env.VERTEXAI_LOCATION,
 });
 
