@@ -28,6 +28,7 @@ const getGCPCredentials = () => {
 // Inicializa Vertex AI con las credenciales y la ubicación
 const vertex_ai = new VertexAI({
   ...getGCPCredentials(),
+  project: process.env.VERTEXAI_PROJECT,
   location: process.env.VERTEXAI_LOCATION,
 });
 
